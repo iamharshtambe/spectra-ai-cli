@@ -9,8 +9,6 @@ export default function Home() {
   const { data, isPending } = authClient.useSession();
   const router = useRouter();
 
-  console.log(data);
-
   if (isPending) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center">
@@ -81,7 +79,7 @@ export default function Home() {
               authClient.signOut({
                 fetchOptions: {
                   onError: (ctx) => console.log(ctx),
-                  onSuccess: () => router.push('/sign-in'),
+                  onSuccess: () => router.push('/register'),
                 },
               })
             }

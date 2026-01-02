@@ -9,7 +9,7 @@ import { useState } from 'react';
 export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
 
-  const onLogin = async () => {
+  async function login() {
     setIsLoading(true);
 
     await authClient.signIn.social({
@@ -18,7 +18,7 @@ export function LoginForm() {
     });
 
     setIsLoading(false);
-  };
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-4">
@@ -49,7 +49,7 @@ export function LoginForm() {
             variant="outline"
             className="group relative h-12 w-full overflow-hidden border-zinc-700 bg-zinc-800/50 transition-all hover:bg-zinc-800 hover:shadow-lg hover:shadow-indigo-500/20"
             type="button"
-            onClick={onLogin}
+            onClick={login}
             disabled={isLoading}
           >
             <div className="flex items-center justify-center gap-3">
