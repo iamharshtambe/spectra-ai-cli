@@ -1,9 +1,20 @@
+import { toNodeHandler } from 'better-auth/node';
 import express from 'express';
-import { drizzle } from 'drizzle-orm/neon-http';
+import cors from 'cors';
+import { auth } from './lib/auth';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const db = drizzle(process.env.DATABASE_URL!);
+
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
+
+app.all('/api/auth/*splat', toNodeHandler(auth));
 
 app.use(express.json());
 
